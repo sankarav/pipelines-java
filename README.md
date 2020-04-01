@@ -1,3 +1,5 @@
+[![Build Status](https://dev.azure.com/san-development/FirstProjectADO/_apis/build/status/sankarav.pipelines-java?branchName=master)](https://dev.azure.com/san-development/FirstProjectADO/_build/latest?definitionId=2&branchName=master)
+
 
 # Contributing
 
