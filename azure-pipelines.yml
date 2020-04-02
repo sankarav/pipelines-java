@@ -4,21 +4,36 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
 
 ################################################
-# Fan In Job
+# Conditional Job
 ################################################
 jobs:
-- job: InitialA
+- job: A
   steps:
-  - script: echo hello from initial A
-- job: InitialB
+  - script: echo hello
+
+- job: B
+  dependsOn: A
+  condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
   steps:
-  - script: echo hello from initial B
-- job: Subsequent
-  dependsOn:
-  - InitialA
-  - InitialB
-  steps:
-  - script: echo hello from subsequent
+  - script: echo this only runs for master
+
+
+################################################
+# Fan In Job
+################################################
+# jobs:
+# - job: InitialA
+#   steps:
+#   - script: echo hello from initial A
+# - job: InitialB
+#   steps:
+#   - script: echo hello from initial B
+# - job: Subsequent
+#   dependsOn:
+#   - InitialA
+#   - InitialB
+#   steps:
+#   - script: echo hello from subsequent
 
 ################################################
 # stages:
