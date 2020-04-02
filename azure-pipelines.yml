@@ -3,18 +3,34 @@
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
 
+################################################
+# Fan In Job
+################################################
+jobs:
+- job: InitialA
+  steps:
+  - script: echo hello from initial A
+- job: InitialB
+  steps:
+  - script: echo hello from initial B
+- job: Subsequent
+  dependsOn:
+  - InitialA
+  - InitialB
+  steps:
+  - script: echo hello from subsequent
 
 ################################################
-stages:
-- stage: Build
-  jobs:
-  - job: Debug_Build
-    steps:
-    - script: echo Debug build complete
-  - job: Release_Build
-    dependsOn: Debug_Build
-    steps:
-    - script: echo Release build complete
+# stages:
+# - stage: Build
+#   jobs:
+#   - job: Debug_Build
+#     steps:
+#     - script: echo Debug build complete
+#   - job: Release_Build
+#     dependsOn: Debug_Build
+#     steps:
+#     - script: echo Release build complete
 
 ################################################
 # stages:
