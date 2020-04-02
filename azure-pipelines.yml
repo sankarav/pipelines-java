@@ -4,12 +4,18 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
 
 jobs:
-- job: myJob
+- job: A
   timeoutInMinutes: 10
   pool:
     vmImage: 'ubuntu-latest'
   steps:
-  - bash: echo 'Hello World'
+  - bash: echo 'A'
+- job: B
+  timeoutInMinutes: 10
+  pool:
+    vmImage: 'ubuntu-latest'
+  steps:
+  - bash: echo 'B'
 
 #trigger:
 #- master
